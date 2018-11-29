@@ -14,7 +14,7 @@ public class ValidChecker {
 		}
 	}
 	
-	public static boolean inNumeric(String strValue) {
+	public static boolean isNumeric(String strValue) {
 		Pattern pattern = Pattern.compile(ValidChecker.NUMBER_PATTERN);
 		Matcher matcher = pattern.matcher(strValue);
 		

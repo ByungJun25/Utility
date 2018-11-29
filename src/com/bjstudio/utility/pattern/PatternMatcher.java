@@ -4,19 +4,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PatternMatcher {
+	 
 	public static final String NUMBER_PATTERN = "^[0-9]*$";
-	public static final String HANGUL_ALL_PATTERN="^[§°-§æ§ø-§”∞°-∆R]*$";
-	public static final String HANGUL_WORD_ONLY_PATTERN="^[∞°-∆R]*$";
-	public static final String HANGUL_NUMBER_PATTERN="^[∞°-∆R0-9]*$";
-	public static final String HANGUL_ALPHABET_PATTERN = "^[∞°-∆Ra-zA-Z]*$";
+	public static final String HANGUL_ALL_PATTERN="^[„Ñ±-„Öé„Öè-„Ö£Í∞Ä-Ìû£]*$";
+	public static final String HANGUL_WORD_ONLY_PATTERN="^[Í∞Ä-Ìû£]*$";
+	public static final String HANGUL_NUMBER_PATTERN="^[Í∞Ä-Ìû£0-9]*$";
+	public static final String HANGUL_ALPHABET_PATTERN = "^[Í∞Ä-Ìû£a-zA-Z]*$";
 	public static final String ALPHABET_PATTERN = "^[a-zA-Z]*$";
 	public static final String ALPHABET_LOWERCASE_PATTERN = "^[a-z]*$";
 	public static final String ALPHABET_UPPERCASE_PATTERN = "^[A-Z]*$";
 	public static final String ALPHABET_NUMBER_OLNY_PATTERN = "^[a-zA-Z0-9]*$";
-	public static final String CHARACTER_ONLY_PATTERN="^[§°-§æ§ø-§”∞°-∆Ra-zA-Z]*$";
-	public static final String CHARACTER_NUMBER_PATTERN="^[§°-§æ§ø-§”∞°-∆Ra-zA-Z0-9]*$";
+	public static final String CHARACTER_ONLY_PATTERN="^[„Ñ±-„Öé„Öè-„Ö£Í∞Ä-Ìû£a-zA-Z]*$";
+	public static final String CHARACTER_NUMBER_PATTERN="^[„Ñ±-„Öé„Öè-„Ö£Í∞Ä-Ìû£a-zA-Z0-9]*$";
 	public static final String SPECIAL_CHARACTER_PATTERN = "[\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"]";
 	public static final String EMAIL_PATTERN = "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+	public static final String PASSWORD_PATTERN = "/^.*(?=^.{8,15}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/";
 	
 	private Pattern pattern;
 	private Matcher matcher;
@@ -170,6 +172,17 @@ public class PatternMatcher {
 	
 	public static boolean isEmail(String strValue) {
 		Pattern pattern = Pattern.compile(PatternMatcher.EMAIL_PATTERN);
+		Matcher matcher = pattern.matcher(strValue);
+		
+		if(matcher.find()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public static boolean isPassword(String strValue) {
+		Pattern pattern = Pattern.compile(PatternMatcher.PASSWORD_PATTERN);
 		Matcher matcher = pattern.matcher(strValue);
 		
 		if(matcher.find()) {
