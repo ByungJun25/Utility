@@ -18,7 +18,9 @@ public class PatternMatcher {
 	public static final String CHARACTER_NUMBER_PATTERN="^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]*$";
 	public static final String SPECIAL_CHARACTER_PATTERN = "[\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"]";
 	public static final String EMAIL_PATTERN = "^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-	public static final String PASSWORD_PATTERN = "/^.*(?=^.{8,15}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/";
+	public static final String PASSWORD_PATTERN = "^(?=.*[A-Za-z])(?=.*\\\\d)(?=.*[$@$!%*#?&])[A-Za-z\\\\d$@$!%*#?&]{8,}$"; //최소 8자리에 숫자, 문자, 특수문자 각각 1개 이상 포함
+	public static final String PASSWORD_PATTERN2 = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$"; //최소 8자리에 대문자 1자리 소문자 한자리 숫자 한자리
+	public static final String PASSWORD_PATTERN3 = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}"; //최소 8자리에 대문자 1자리 소문자 1자리 숫자 1자리 특수문자 1자리
 	
 	private Pattern pattern;
 	private Matcher matcher;
